@@ -1,7 +1,8 @@
-var express = require("express");
+const express = require("express");
+const QRCode = require("qrcode");
 const urls = require("../urls.json");
 
-var router = express.Router();
+const router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -10,8 +11,15 @@ router.get("/", function (req, res, next) {
 
 router.get("/:slug", function (req, res, next) {
   const { slug } = req.params;
+  const { qr } = req.query;
   if (urls[slug]) {
-    res.redirect(urls[slug]);
+    if (qr === "true") {
+      QRCode.toDataURL(urls[slug], function (err, qr) {
+        res.render("qr", { url: urls[slug], qr, slug });
+      });
+    } else {
+      res.redirect(urls[slug]);
+    }
   } else {
     res.redirect("https://rubenvillar.net");
   }
