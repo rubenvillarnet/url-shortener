@@ -8,3 +8,7 @@ It is deployed in https://go.rubenvillar.net and you can test a few links:
 
 - https://go.rubenvillar.net/portfolio-wp
 - https://go.rubenvillar.net/mis-recetas-android
+
+You can use the param _qr=true_ and see a nice QR code of the full link, like:
+
+- https://go.rubenvillar.net/portfolio-wp?qr=true
